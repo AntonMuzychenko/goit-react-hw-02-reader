@@ -3,40 +3,35 @@ import PropTypes from 'prop-types';
 import styles from './Controls.module.css';
 
 const Controls = ({
-  hendleDecrement,
-  hendleIncrement,
-  indexValue,
-  itemsLength,
+  hendleGetValue,
+  hendleDeposits,
+  hendleWithdrow,
+  inputValue,
 }) => {
   return (
     <section className={styles.controls}>
-      <button
-        type="button"
-        className={styles.button}
-        name="buttonPrev"
-        onClick={hendleDecrement}
-        disabled={indexValue === 1}
-      >
-        Назад
+      <input
+        className={styles.input}
+        type="number"
+        name="value"
+        onChange={e => hendleGetValue(e)}
+        placeholder="0"
+        value={inputValue}
+      />
+      <button type="button" onClick={hendleDeposits}>
+        Deposit
       </button>
-      <button
-        type="button"
-        className={styles.button}
-        name="buttonNext"
-        onClick={hendleIncrement}
-        disabled={indexValue === itemsLength}
-      >
-        Вперед
+      <button type="button" onClick={hendleWithdrow}>
+        Withdraw
       </button>
     </section>
   );
 };
 
 Controls.propTypes = {
-  hendleDecrement: PropTypes.func.isRequired,
-  hendleIncrement: PropTypes.func.isRequired,
-  indexValue: PropTypes.number.isRequired,
-  itemsLength: PropTypes.number.isRequired,
+  hendleGetValue: PropTypes.func.isRequired,
+  hendleDeposits: PropTypes.func.isRequired,
+  hendleWithdrow: PropTypes.func.isRequired,
+  inputValue: PropTypes.string.isRequired,
 };
-
 export default Controls;
